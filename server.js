@@ -1,6 +1,7 @@
 // Required Modules for App
 const express = require('express');
 const connectDB = require('./config/db');
+const fs =require('fs');
 
 // Express App
 const app = express();
@@ -15,6 +16,17 @@ app.get('/', (req, res) => {
   res.send('API Running');
 });
 
+app.get('/docs',(req,res)=>{
+  fs.readFile('docs/apiDocs.json',(err,data)=>{
+    if (err) {
+      return res.status(400).json({error:err})
+    }
+    const docs=JSON.parse(data)
+    return res.json(docs)
+  })
+})
+
+app.get()
 // Define Routes
 app.use('/api/users', require('./routes/api/user'));
 
