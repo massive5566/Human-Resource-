@@ -2,6 +2,7 @@
 const express = require('express');
 const connectDB = require('./config/db');
 const fs =require('fs');
+const cors=require('cors')
 
 // Express App
 const app = express();
@@ -11,11 +12,12 @@ connectDB();
 
 // init Mildware
 app.use(express.json({ extended: false }));
-
+app.use(cors());
 app.get('/', (req, res) => {
   res.send('API Running');
 });
 
+//this url displays apis list
 app.get('/docs',(req,res)=>{
   fs.readFile('docs/apiDocs.json',(err,data)=>{
     if (err) {

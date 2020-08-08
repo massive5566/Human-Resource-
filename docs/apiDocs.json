@@ -1,4 +1,4 @@
 {
-"/signin":"signin api"
+"/signup":"signup api.. response: userdata and token"
 
 }
