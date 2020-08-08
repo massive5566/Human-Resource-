@@ -1,15 +1,20 @@
 const mongoose = require('mongoose');
 
+//you should save company in company model then create relationship
 const userSchema = mongoose.Schema({
-  name: {
+  firstName: {
     type: String,
     required: true,
   },
-  companyname: {
+  lastName: {
     type: String,
     required: true,
   },
-  rangeofemployee: {
+  companyName: {
+    type: String,
+    required: true,
+  },
+  rangeEmployee: {
     type: String,
     required: true,
   },
@@ -30,6 +35,16 @@ const userSchema = mongoose.Schema({
     default: Date.now,
   },
 });
+
+userSchema.methods={
+  //this removes password from response
+  toJSON:function(){
+    let obj=this. toObject();
+    ['password'].forEach((item)=>{
+      delete obj[item];
+    })
+  }
+}
 
 const User = mongoose.model('User', userSchema);
 module.exports = User;

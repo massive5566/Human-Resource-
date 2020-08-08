@@ -3,6 +3,7 @@ const express = require('express');
 const connectDB = require('./config/db');
 const fs =require('fs');
 const cors=require('cors')
+const authRoutes=require('./routes/api/auth');
 
 // Express App
 const app = express();
@@ -30,7 +31,10 @@ app.get('/docs',(req,res)=>{
 
 // app.get()
 // Define Routes
-app.use('/api/users', require('./routes/api/user'));
+app.use('/', authRoutes);
+//to add other routes just do.
+//app.use('/',companyRoutes);
+// app.use('/api/users', require('./routes/api/user'));
 
 const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => {
