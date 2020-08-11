@@ -1,9 +1,9 @@
 // Required Modules for App
 const express = require('express');
 const connectDB = require('./config/db');
-const fs =require('fs');
-const cors=require('cors')
-const authRoutes=require('./routes/api/auth');
+const fs = require('fs');
+const cors = require('cors');
+const authRoutes = require('./routes/api/auth');
 
 // Express App
 const app = express();
@@ -19,15 +19,15 @@ app.get('/', (req, res) => {
 });
 
 //this url displays apis list
-app.get('/docs',(req,res)=>{
-  fs.readFile('docs/apiDocs.json',(err,data)=>{
+app.get('/docs', (req, res) => {
+  fs.readFile('docs/apiDocs.json', (err, data) => {
     if (err) {
-      return res.status(400).json({error:err})
+      return res.status(400).json({ error: err });
     }
-    const docs=JSON.parse(data)
-    return res.json(docs)
-  })
-})
+    const docs = JSON.parse(data);
+    return res.json(docs);
+  });
+});
 
 // app.get()
 // Define Routes
