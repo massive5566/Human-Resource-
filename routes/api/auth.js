@@ -2,7 +2,8 @@ const express = require('express');
 const router = express.Router();
 
 const { check, validationResult } = require('express-validator');
-const {signup}=require('../../controllers/auth');
+const { signup } = require('../../controllers/auth');
+const { login } = require('../../controllers/auth');
 
 // @route       Post api/users
 // @desc        Register Route
@@ -23,6 +24,15 @@ router.post(
     check('rangeEmployee', 'Employee Range is required'),
   ],
   signup
+);
+
+router.post(
+  '/',
+  [
+    check('email', 'Email is required').isEmail(),
+    check('password', 'Please is required').exists(),
+  ],
+  login
 );
 
 module.exports = router;
